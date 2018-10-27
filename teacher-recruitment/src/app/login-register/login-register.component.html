@@ -1,0 +1,8 @@
+<nz-tabset [nzSelectedIndex]="p_index">
+      <nz-tab nzTitle="登录">
+        <app-login (event)="getData($event)"></app-login>
+      </nz-tab>
+      <nz-tab nzTitle="注册">
+        <app-register (event)="getData($event)">></app-register>
+      </nz-tab>
+    </nz-tabset>

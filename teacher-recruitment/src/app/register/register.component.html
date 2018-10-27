@@ -1,0 +1,47 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+          <input formControlName="phoneNumber" id="'phoneNumber'" placeholder="请输入手机号" nz-input>
+          <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty && validateForm.get('phoneNumber').errors">Please input your phone number!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input type="password" id="password" placeholder="请输入密码" formControlName="password" (ngModelChange)="updateConfirmValidator()">
+          <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input your password!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input type="password" formControlName="checkPassword" id="checkPassword" placeholder="请确认密码">
+          <nz-form-explain *ngIf="validateForm.get('checkPassword').dirty && validateForm.get('checkPassword').errors">
+            <ng-container *ngIf="validateForm.get('checkPassword').hasError('required')">
+              Please confirm your password!
+            </ng-container>
+            <ng-container *ngIf="validateForm.get('checkPassword').hasError('confirm')">
+              Two passwords that you enter is inconsistent!
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <div nz-row [nzGutter]="8">
+            <div nz-col [nzSpan]="12">
+              <input nz-input formControlName="captcha" id="captcha" placeholder="请输入验证码">
+            </div>
+            <div nz-col [nzSpan]="12">
+              <button nz-button (click)="getCaptcha($event)">获取验证码</button>
+            </div>
+          </div>
+          <nz-form-explain *ngIf="validateForm.get('captcha').dirty && validateForm.get('captcha').errors">Please input the captcha you got!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row style="margin-bottom:8px;">
+        <nz-form-control [nzSpan]="14">
+          <button nz-button nzType="primary">立即注册</button>
+          已有账号？
+          <a href="javascript:;" (click)="goToLogin()">立即登录>></a>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
